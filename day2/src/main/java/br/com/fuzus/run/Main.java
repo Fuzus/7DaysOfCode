@@ -3,22 +3,19 @@ package br.com.fuzus.run;
 import br.com.fuzus.model.Movie;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
-import java.util.regex.MatchResult;
 
 public class Main {
 
     static Map<String, String> map = new HashMap<>();
 
     public static void main(String[] args) {
-        HttpClient client = HttpClient.newBuilder()
-                .build();
+        HttpClient client = HttpClient.newBuilder().build();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://imdb-api.com/en/API/Top250Movies/k_ladr4o9k"))
@@ -37,8 +34,8 @@ public class Main {
 
 
     /**
-     * @Description Lista os filmes utilizando a biblioteca Gson da google
      * @param json
+     * @Description Lista os filmes utilizando a biblioteca Gson da google
      */
     public static void listMoviesGson(String json) {
         Gson gson = new GsonBuilder().create();
@@ -57,9 +54,9 @@ public class Main {
     }
 
     /**
+     * @param json
      * @description Lista os filme utilizando as bibliotecas
      * padrões do java
-     * @param json
      */
     public static void listMoviesString(String json) {
         List<String> titles = new ArrayList<>();
@@ -85,7 +82,7 @@ public class Main {
 
         for (String str : parsable) {
             String[] a = str.split("\":\"");
-            map.put(a[0].replaceAll("\"",""), a[1].replaceAll("\"", ""));
+            map.put(a[0].replaceAll("\"", ""), a[1].replaceAll("\"", ""));
         }
         return map.get(key);
     }
